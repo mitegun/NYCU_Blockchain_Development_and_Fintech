@@ -1,25 +1,25 @@
-To run this code:
-1- clone repository and open a shell inside of it
-2- ```npm install hardhat```
-3-enter your informatin in hardhat.config.js
+To run this code:\n
+1- clone repository and open a shell inside of it\n
+2- ```npm install hardhat```\n
+3-enter your informatin in hardhat.config.js\n
 
-To test:
-```npx hardhat test```
+To test:\n
+```npx hardhat test```\n
 
-To deploy:
-1-```npx hardhat run scripts/deploySCV1.js --network zircuit ```
-2-modify the file with the address os SafeContract and ```npx hardhat run scripts/deployProxy.js --network zircuit```
-3-```npx hardhat run scripts/deploySCV2.js --network zircuit```
+To deploy:\n
+1-```npx hardhat run scripts/deploySCV1.js --network zircuit ``` \n
+2-modify the file with the address os SafeContract and ```npx hardhat run scripts/deployProxy.js --network zircuit```\n
+3-```npx hardhat run scripts/deploySCV2.js --network zircuit```\n
 
-To upgrade:
-enter your private key, address of the proxy and of SafeContractV2
-1-```npx hardhat run scripts/shouldUpgrade.js --network zircuit```
+To upgrade:\n
+enter your private key, address of the proxy and of SafeContractV2 \n
+1-```npx hardhat run scripts/shouldUpgrade.js --network zircuit```\n
 
-To see if fee is still there:
-enter your private key and address of the proxy
-1-```npx hardhat run scripts/shouldRevert.js --network zircuit```
+To see if fee is still there:\n
+enter your private key and address of the proxy \n
+1-```npx hardhat run scripts/shouldRevert.js --network zircuit```\n
 
-Expected result for test and gas report 
+Expected result for test and gas report \n
 
 ```
   SafeProxy
