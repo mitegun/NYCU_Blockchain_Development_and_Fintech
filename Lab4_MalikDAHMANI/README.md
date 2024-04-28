@@ -8,7 +8,7 @@ npx hardhat test
 
 To deploy:
 1-npx hardhat run scripts/deploySCV1.js --network zircuit
-2-npx hardhat run scripts/deployProxy.js --network zircuit
+2-modify the file with the address os SafeContract and npx hardhat run scripts/deployProxy.js --network zircuit
 3-npx hardhat run scripts/deploySCV2.js --network zircuit
 
 To upgrade:
