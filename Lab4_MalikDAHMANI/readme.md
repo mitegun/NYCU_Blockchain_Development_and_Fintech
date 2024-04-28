@@ -20,6 +20,8 @@ enter your private key and address of the proxy
 1-npx hardhat run scripts/shouldRevert.js --network zircuit
 
 Expected result for test and gas report 
+
+```
   SafeProxy
     √ Should set the deployer as the owner and implementation to safeContractV1
     √ Should revert addr1 not the owner
@@ -90,3 +92,4 @@ Expected result for test and gas report
 ·············································································································
 |  Toolchain:  hardhat                                                                                      │
 ·············································································································
+```
