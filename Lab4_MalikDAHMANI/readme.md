@@ -1,23 +1,23 @@
 To run this code:
 1- clone repository and open a shell inside of it
-2- npm install hardhat
+2- ```npm install hardhat```
 3-enter your informatin in hardhat.config.js
 
 To test:
-npx hardhat test
+```npx hardhat test```
 
 To deploy:
-1-npx hardhat run scripts/deploySCV1.js --network zircuit
-2-modify the file with the address os SafeContract and npx hardhat run scripts/deployProxy.js --network zircuit
-3-npx hardhat run scripts/deploySCV2.js --network zircuit
+1-```npx hardhat run scripts/deploySCV1.js --network zircuit ```
+2-modify the file with the address os SafeContract and ```npx hardhat run scripts/deployProxy.js --network zircuit```
+3-```npx hardhat run scripts/deploySCV2.js --network zircuit```
 
 To upgrade:
 enter your private key, address of the proxy and of SafeContractV2
-1-npx hardhat run scripts/shouldUpgrade.js --network zircuit
+1-```npx hardhat run scripts/shouldUpgrade.js --network zircuit```
 
 To see if fee is still there:
 enter your private key and address of the proxy
-1-npx hardhat run scripts/shouldRevert.js --network zircuit
+1-```npx hardhat run scripts/shouldRevert.js --network zircuit```
 
 Expected result for test and gas report 
 
