@@ -1,0 +1,68 @@
+const {
+  expect,
+  assert
+} = require("chai");
+const {
+  ethers
+} = require("hardhat");
+
+describe("SafeContractV2", function () {
+  let SafeContract, safeContract, Token, token, owner, addr1;
+
+  before("deploy the contract instance and give user some tokens first", async function () {
+
+    [owner, addr1] = await ethers.getSigners();
+
+    // Deploy SafeContract
+    SafeContract = await ethers.getContractFactory("SafeContractV2");
+    safeContract = await SafeContract.deploy();
+    await safeContract.waitForDeployment();
+
+    // Deploy Token
+    Token = await ethers.getContractFactory("Token");
+    token = await Token.deploy();
+    await token.waitForDeployment();
+
+    // Transfer tokens to addr1
+    await token.connect(owner).transfer(addr1.address, 10000);
+
+  });
+
+  it("Should set the right owner", async function () {
+    assert.equal(await safeContract.owner(), owner.address);
+  });
+
+  it("Should deposit, withdraw tokens and no more fee", async function () {
+    const amount = 10000;
+    // Deposit tokens
+    const overrides = {
+      gasLimit: 3000000, // Set a higher gas limit
+    };
+    await token.connect(addr1).approve(safeContract.getAddress(), amount, overrides);
+
+    // Deposit tokens into SafeContract
+    const depositTx = await safeContract.connect(addr1).deposit(token.getAddress(), amount, overrides);
+    await depositTx.wait();
+
+    // Check balance of SafeContract after deposit
+    const balanceAfterDeposit = await token.balanceOf(safeContract.getAddress());
+    expect(balanceAfterDeposit.toString()).to.equal(amount.toString());
+
+    // Check balance of addr1 after deposit
+    const addr1BalanceAfterDeposit = await token.balanceOf(addr1.getAddress());
+    expect(addr1BalanceAfterDeposit.toString()).to.equal("0");
+
+    // Withdraw tokens from SafeContract
+    const withdrawTx = await safeContract.connect(addr1).withdraw(token.getAddress(), amount);
+    await withdrawTx.wait()
+
+    // Withdraw tokens from SafeContract
+    const balanceAfterWithdrawal = await token.balanceOf(safeContract.getAddress());
+    expect(balanceAfterWithdrawal.toString()).to.eql("0");
+
+    // Check balance of addr1 after withdrawal
+    const addr1BalanceAfterWithdrawal = await token.balanceOf(addr1.getAddress());
+    expect(addr1BalanceAfterWithdrawal.toString()).to.equal((10000).toString());
+  });
+
+});
