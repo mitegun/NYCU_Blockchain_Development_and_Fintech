@@ -160,7 +160,7 @@ SafeUpgradeableDeployed event: proxyAddress = 0x620C0f7f1F585C0f702E77161D7f58a6
 ```
 <br>
 Coverage
-<br>
+
 ```
 -----------------------------------|----------|----------|----------|----------|----------------|
 File                               |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
